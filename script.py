@@ -1,12 +1,18 @@
-import requests
 import os
+import requests
 
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]
 
 message = "Test message from GitHub Actions"
 
-requests.post(
+response = requests.post(
     f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-    data={"chat_id": CHAT_ID, "text": message}
+    data={
+        "chat_id": CHAT_ID,
+        "text": message,
+    },
 )
+
+print(response.status_code)
+print(response.text)
